@@ -1,0 +1,28 @@
+html, body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#app{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;    
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffc107;
+    height: 100%;
+    padding-top: 50px;
+    box-shadow: 0 0 20px 5px rgba(0,0,0,0.15);
+}
+.main-count, .rest-count{
+    overflow: hidden;
+    transition: all 250ms ease-in 0s;
+}
+.rest-count{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
