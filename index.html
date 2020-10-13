@@ -17,9 +17,11 @@
     
     <div class="wrapper">
         <div id="app">
+            
             <header>
                 <h1 :class="home.title.class"> {{ home.title.content }} </h1>
             </header>
+
             <section class="welcome-message">
                 <span :class="home.welcome.class">
 
@@ -28,8 +30,7 @@
                 </span>
             </section>
 
-
-            <get-pokemons></get-pokemons>
+            <get-pokemons />
 
             <main-footer></main-footer>
 

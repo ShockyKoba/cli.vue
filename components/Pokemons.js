@@ -1,9 +1,16 @@
 app.component('get-pokemons', {
+    props: {
+        quantity: {
+            type: Number,
+            default: 150
+        }
+    },
     template: /* html */`
 
 
         <section class="pokemons">
             <div class="pokemons-wrapper">
+            
 
                 <div class="pokemon" v-for="(pokemon, index) in pokemons" :title="pokemon.name + ' - ' + index">
                     <a :href=" '/pokemon?id=' + pokemon.name">
@@ -37,7 +44,7 @@ app.component('get-pokemons', {
     },
     mounted () {
         axios
-            .get('https://pokeapi.co/api/v2/pokemon/?limit=150')
+            .get('https://pokeapi.co/api/v2/pokemon/?limit=' + this.quantity)
             .then( response => {
                 this.info = response.data.results
             })
