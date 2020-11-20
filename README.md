@@ -1,4 +1,4 @@
-# vuex
+# model
 
 ## Project setup
 ```

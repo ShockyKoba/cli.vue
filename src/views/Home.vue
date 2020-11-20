@@ -1,24 +1,21 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h1>Count: {{ count }}</h1>
-    <Btn action="add" quantity="5" /> <Btn action="remove" :quantity="10" /> <Btn />
-  </div>
+  <main class="page home">
+    <div class="container">
+
+      <img src="../assets/logo.png" alt="Vue Logo" class="mx-auto mt-5">
+      <Header :title="`${$route.name} Page`" />
+      
+    </div>
+  </main>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import Btn from '@/components/Btn.vue'
-import {mapState, mapActions} from 'vuex'
+import Header from '../components/Header.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld, Btn
-  },
-  computed: {
-    ...mapState(['count'])
-  },
+    Header
+  }
 }
 </script>
