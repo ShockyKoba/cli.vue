@@ -35,7 +35,7 @@ export default createStore({
       // console.log(state.tasks);
     },
     loadDBMutator: function(state, payload){
-      state.tasks = JSON.parse(localStorage.getItem('db:tasks'));
+      state.tasks = payload;
       // console.log(state.tasks);
     },
     pushDBMutator: function(state, payload){
@@ -46,19 +46,41 @@ export default createStore({
   
 
   actions: {
-    createTask: function({commit}, data){
-      // console.log('pushing...');
-      commit('createTaskMutator', data);
-      commit('pushDBMutator');
-      // console.log('end pushing...');
+    manageTask: async function({commit}, data){
+
+      try{
+        const pushDB = await fetch(`https://vue3-c3322.firebaseio.com/tasks/${data.id}.json`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        let response = await pushDB.json();
+        console.log(response);
+
+      }catch(error){
+          console.log(error);
+      }
+
+
     },
-    deleteTask: function({commit}, data){
+    deleteTask: async function({commit}, data){
       if(data.trim() !== ''){
         let response = confirm('Are you sure you want to delete the task?');
 
         if(response){
-          commit('deleteTaskMutator', data);
-          commit('pushDBMutator');
+
+          try{
+            const pushDB = await fetch(`https://vue3-c3322.firebaseio.com/tasks/${data}.json`, {
+              method: 'DELETE',
+            });
+          }catch(r){
+            console.log('Error!');
+            console.log(r);
+          }
+
         }
       }
       // console.log('ID Not Selected.');
@@ -68,18 +90,23 @@ export default createStore({
         commit('getTaskMutator', data);
       }
     },
-    updateTask: function({commit}, data = null){
-      commit('updateTaskMutator', data);
-      commit('pushDBMutator');
-    },
-    loadLocalStorageDB: function({commit}){
-      if( localStorage.getItem('db:tasks') ){
-        commit('loadDBMutator');
-        // console.log('exist db');
-      }else{
-        localStorage.setItem('db:tasks', JSON.stringify([]));
-        // console.log('create db');
+    loadDB: async function({commit}){
+      try{
+        const getDB = await fetch('https://vue3-c3322.firebaseio.com/tasks.json');
+        const response = await getDB.json();
+        const tasksArray = [];
+
+        for(let item in response){
+          tasksArray.push(response[item]);
+        };
+
+        commit('loadDBMutator', tasksArray);
+
+      }catch(error){
+        console.log('Error!');
+        console.log(error);
       }
+
     }
   },
 

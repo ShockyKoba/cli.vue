@@ -20,10 +20,10 @@ export default {
     Navbar, Notifications, Footer
   },
   methods: {
-    ...mapActions(['loadLocalStorageDB'])
+    ...mapActions(['loadDB'])
   },
   created(){
-    this.loadLocalStorageDB();
+    this.loadDB();
   }
 }
 </script>

@@ -1,11 +1,9 @@
 <template>
   <main class="page tasks view">
+    <TasksNavbar></TasksNavbar>
     <div class="container-fluid">
-
-      <TasksNavbar></TasksNavbar>
       <Header :title="`${$route.name} Page`" />
       <DisplayTasks />
-
     </div>
   </main>
 </template>

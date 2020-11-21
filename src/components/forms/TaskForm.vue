@@ -140,14 +140,15 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['createTask', 'getTask', 'updateTask']),
+        ...mapActions(['manageTask', 'getTask']),
         
         formSubmit: function(){ 
+            /* if you are editing a task */
             if(this.taskID !== null){
 
                 if( this.theTask !== undefined ){
 
-                    this.updateTask(this.task);
+                    this.manageTask(this.task);
                     alertNotification('Task Updated!', 'warning');
 
                 }else{
@@ -156,10 +157,11 @@ export default {
 
                 }
             }else{
+                /* if you are creating a task */
                 if(this.fieldsRequiredArentEmpty() == true){
 
                     this.task.id = shortID.generate();
-                    this.createTask(this.task);
+                    this.manageTask(this.task);
                     alertNotification('Task Created Correctly!', 'success');
                     this.formReset();
 
