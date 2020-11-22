@@ -116,7 +116,15 @@ export default createStore({
         let response = await putUser.json();
         console.log('Response: ');
         if(response.error){
-          return console.log(response.error);
+          let message = response.error.message; 
+          if(message == 'EMAIL_EXISTS'){
+            alertNotification('This email already exist!', 'danger');
+          }else if(message == 'INVALID_PASSWORD'){
+            alertNotification('The password are invalid', 'danger');
+          }else{
+            alertNotification('Some error has ocurred, please refresh the page and try again.', 'danger');
+          }
+          return false;
         }
 
         alertNotification('Registered. Please Sign In!', 'success');
