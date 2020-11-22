@@ -20,10 +20,10 @@ export default {
     Navbar, Notifications, Footer
   },
   methods: {
-    ...mapActions(['loadDB'])
+    ...mapActions(['checkLoggedIn'])
   },
   created(){
-    this.loadDB();
+    this.checkLoggedIn();
   }
 }
 </script>

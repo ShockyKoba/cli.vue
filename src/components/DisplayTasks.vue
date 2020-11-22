@@ -100,7 +100,10 @@ export default {
         ...mapState(['tasks'])
     },
     methods: {
-        ...mapActions(['deleteTask']),
+        ...mapActions(['deleteTask', 'loadDB']),
+    },
+    created(){
+        this.loadDB();
     }
 }
 </script>

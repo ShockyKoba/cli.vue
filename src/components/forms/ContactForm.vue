@@ -1,5 +1,5 @@
 <template>
-    <form id="#form-contact" class="form mt-5 pb-3" @submit.prevent="formContactProcess">
+    <form id="form-contact" class="form mt-5 pb-3" @submit.prevent="formContactProcess">
         <div class="container-fluid">
             <div class="row">
 
